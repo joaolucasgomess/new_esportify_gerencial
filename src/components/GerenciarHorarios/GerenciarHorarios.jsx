@@ -153,12 +153,7 @@ function GerenciarHorarios() {
           },
         }
       );
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}quadra/horarios/${idQuadra}`,
-        { headers: { Authorization: token } }
-      );
-      setHorarios(response.data.times);
-      console.log(response.data);
+      setHorarios((prevState) => prevState.filter((horario) => horario.id !== horarioParaExcluir.id))
       toggleDeleteModal(null);
     } catch (error) {
       if (
@@ -179,6 +174,7 @@ function GerenciarHorarios() {
     try {
       setIsLoading(true);
       // Lógica para desativar horário
+      alert('tem que criar a rota na api lindo')
     } catch (error) {
       console.error("Erro ao desativar horário:", error);
     } finally {
@@ -190,7 +186,9 @@ function GerenciarHorarios() {
   const alterarHorario = async (horario, novosDados) => {
     try {
       setIsLoading(true);
-      // Lógica para alterar horário
+      alert('tem que criar a rota na api lindo')
+      // const response = await axios.put(`${import.meta.env.VITE_API_URL}vem aí ainda`)
+
     } catch (error) {
       console.error("Erro ao alterar horário:", error);
     } finally {
@@ -351,6 +349,7 @@ function GerenciarHorarios() {
           <AlterarHorarioModal
             onClose={() => toggleAlterarModal()}
             onAlterar={alterarHorario}
+            dia={diaSelecionado}
             horario={horarioParaAlterar}
           />
         )}

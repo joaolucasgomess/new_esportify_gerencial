@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AdicionarHorarioModal({ onClose, onAddHorario, dia, errorMessage }) {
+function AdicionarHorarioModal({ onClose, onAlterar, dia, errorMessage }) {
   const [horarioInicio, setHorarioInicio] = useState("");
   const [horarioFim, setHorarioFim] = useState("");
   const [preco, setPreco] = useState("");
@@ -15,7 +15,7 @@ function AdicionarHorarioModal({ onClose, onAddHorario, dia, errorMessage }) {
       preco: parseFloat(preco),
     };
 
-    onAddHorario(novoHorario);
+    onAlterar(novoHorario);
   };
 
   return (
