@@ -1,0 +1,943 @@
+@font-face {
+  font-family: "IstokWeb";
+  src: url("./assets/fonts/Istok_Web/IstokWeb-Regular.ttf");
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "IstokWeb";
+}
+
+/* CSS RELACIONADO AO CARD DE QUADRA */
+.quadra {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #5f535331;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.quadras-container {
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 200px;
+}
+
+.quadras-list {
+  display: flex;
+  padding: 0px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-left: 200px;
+}
+
+.minhas-quadras {
+  text-decoration: underline;
+  font-size: 1.5em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 1%;
+}
+
+/* CSS RELACIONADO AO MENU LATERAL DE OPÇÕES */
+.seta-voltar {
+  cursor: pointer;
+  color: white;
+  margin: 0;
+}
+
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to bottom, black, gray);
+  width: 200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.menu-lateral ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.menu-lateral li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-lateral li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.btn-logout {
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-logout p {
+  margin-top: 2px;
+}
+
+@media screen and (max-width: 480px) {
+  .menu-lateral {
+    width: 30vw;
+  }
+}
+
+/* CSS RELACIONADO AO BOTÃO DE ADICIONAR QUADRA */
+.btn-add-quadra {
+  background-color: #6d6d6d;
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+  width: 152px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-add-quadra:hover {
+  background-color: #838383;
+}
+
+/* CSS RELACIONADO AO MODAL DE ADICIONAR QUADRA */
+.quadra-form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.quadra-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.input-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-submit {
+  background-color: #6d6d6d;
+  color: white;
+  width: 40vh;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-submit:hover {
+  background-color: #838383;
+}
+
+/* CSS RELACIONADO AO BOTÃO DE GERENCIAR HORÁRIO DA QUADRA */
+.btn-configure {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+/* CSS RELACIONADO AO GERENCIAR HORÁRIOS */
+.gerenciar-container {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 200px;
+  padding: 20px;
+  width: calc(100% - 200px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gerenciar-horario {
+  display: flex;
+  align-items: center;
+}
+
+.btn-add-horario {
+  background-color: #6d6d6d;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  width: 152px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-add-horario:hover {
+  background-color: #838383;
+}
+
+.dias-semana {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 5px;
+  border-radius: 8px;
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+}
+
+.dias-semana span {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: 1px solid black;
+  border-radius: 8px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.dias-semana span:hover {
+  text-decoration: underline;
+}
+
+.dias-semana .selected {
+  color: white;
+  background-color: #404040;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.horarios-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: none;
+  background-color: #fff;
+}
+
+.horario-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: calc(33.333% - 10px);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.horario-card:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.horario-info {
+  flex: 1;
+}
+
+.horario-info h3 {
+  text-decoration: underline;
+  margin-bottom: 2px;
+}
+
+.horario-info p {
+  margin: 0px;
+}
+
+.horario-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.action-icon {
+  cursor: pointer;
+  color: #555;
+  transition: color 0.3s;
+}
+
+.action-icon:hover {
+  color: #000;
+}
+
+.sem-horarios {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+/* CSS RELACIONADO AO MODAL DE ADICIONAR HORÁRIO */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+}
+
+.modal-content {
+  background-color: whitesmoke;
+  padding: 3%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-group-modal {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.input-group-modal label {
+  margin-right: 10px;
+  width: 100px;
+}
+
+.input-group-modal input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.btn-container-modal {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-modal {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #6d6d6d;
+  color: white;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-modal:hover {
+  background-color: #838383;
+}
+
+/* CSS RELACIONADO AO LOADING */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.loading {
+  position: fixed;
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 150px;
+  min-height: 150px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+/* CSS RELACIONADO A TELA DE LOGIN */
+.container-login {
+  display: flex;
+  height: 100vh;
+  text-align: center;
+}
+
+.left-panel {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.text-welcome {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 1.5em;
+  color: #404040;
+  padding-bottom: 30px;
+}
+
+.texto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .texto {
+    display: block;
+    margin: 0px;
+  }
+}
+
+.cadastro-decoration {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+.img-esportify {
+  max-height: 40vh;
+  max-width: 40vw;
+  margin: 10px;
+}
+
+.right-panel {
+  width: 60vw;
+  min-height: 50vh;
+  max-height: 100vh;
+  background: linear-gradient(to bottom, black, gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-panel {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+.login-form-container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  width: 80%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  transition: width 0.1s ease-in, height 0.1s ease-in;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="number"]:hover {
+  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+  outline: none;
+  width: 81%;
+  height: 81%;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+  border: 10px blue;
+  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.options {
+  align-items: center;
+  text-align: center;
+}
+
+.btn-login {
+  width: 80%;
+  padding: 10px 20px 10px 20px;
+  background-color: #6d6d6d;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-login:hover {
+  background-color: #838383;
+}
+
+.error-message {
+  color: red;
+}
+
+/* CSS RELACIONADO A CONFIRMAÇÃO DE DELETAR HORÁRIO */
+.modal-overlay-delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+}
+
+.modal-content-delete {
+  background-color: whitesmoke;
+  padding: 3%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-title-delete {
+  font-size: 24px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.modal-description-delete {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.modal-buttons-delete {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-delete {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #6d6d6d;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-delete:hover {
+  background-color: #838383;
+}
+
+/* CSS RELACIONADO A TELA DE LISTAR HORÁRIOS MARCADOS */
+.listar-agendamentos {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+.horarios-lista {
+  list-style-type: none;
+  padding: 0;
+}
+
+.horario-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px black solid;
+  border-radius: 8px;
+  background-color: #5f535331;
+}
+
+.horario-item p {
+  margin: 5px 0;
+}
+
+.sem-horarios {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.pagination button {
+  width: 150px;
+  height: 50px;
+  margin: 0 10px;
+  background-color: #6d6d6d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+.pagination button:hover {
+  background-color: #838383;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* CSS RELACIONADO A TELA DE REGISTRO */
+.register-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.register-form-container {
+  align-items: center;
+  text-align: center;
+}
+
+.register-left {
+  width: 20%;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(to bottom, black, gray);
+}
+
+.register-left img {
+  max-width: 100%;
+  height: auto;
+}
+
+.register-right {
+  width: 80%;
+  padding: 20px;
+}
+
+.div-btn-register {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.btn-register {
+  width: 40%;
+  padding: 10px 20px 10px 20px;
+  background-color: #6d6d6d;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  cursor: pointer;
+  margin: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-login:hover {
+  background-color: #838383;
+}
+
+.progress-bar-container {
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #000000;
+}
+
+.progress-steps {
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  height: 10vh;
+  background: linear-gradient(to right, black, gray);
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.progress-step {
+  flex: 1;
+  text-align: center;
+}
+
+.progress-step.active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: white;
+}
+
+.text-register {
+  color: white;
+  padding: 70px 0px;
+}
+
+@media screen and (max-width: 480px) {
+  .register-left {
+    width: 20vw;
+    align-items: center;
+  }
+
+  .register-right {
+    width: 80%;
+  }
+
+  .progress-steps {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .progress-bar {
+    display: none;
+  }
+}
+
+/* CSS RELACIONADO A PÁGINA DE SOLICITAÇÕES */
+.gerenciar-container-solicitacoes {
+  display: flex;
+}
+
+.main-content-solicitacoes {
+  flex: 1;
+  padding: 20px;
+  margin-left: 200px;
+}
+
+.header-solicitacoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.options-solicitacoes {
+  display: flex;
+  gap: 20px;
+}
+
+.options-solicitacoes span {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid black;
+  transition: background-color 0.3s ease;
+}
+
+.options-solicitacoes span.selected {
+  color: white;
+  background-color: #838383;
+}
+
+.solicitacoes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: none;
+  background-color: #fff;
+  width: 100%;
+}
+
+.solicitacoes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.solicitacao-card {
+  position: relative;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  width: 300px;
+  height: 200px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.solicitacao-card:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.solicitacao-info {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.solicitacao-info p {
+  margin: 5px 0;
+}
+
+.solicitacao-actions {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.solicitacao-actions button {
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: transparent;
+  color: #6d6d6d;
+  border: none;
+  transition: color 0.3s ease;
+}
+
+.solicitacao-actions button:hover {
+  color: #838383;
+}
+
+.sem-solicitacoes {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.solicitacao-actions button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
