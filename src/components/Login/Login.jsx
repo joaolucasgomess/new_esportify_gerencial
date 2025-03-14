@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { Box, Typography, TextField, Button, Link } from "@mui/material";
-import LeftImage from "../../assets/images/esportifyGerencial.png";
+import LeftImage from "../../assets/images/esportify-logo.png";
 import RightImage from "../../assets/images/img-login.png";
 import Loading from "../Loading/Loading";
 
@@ -54,13 +54,21 @@ function Home() {
         }}
       >
         {/* Logo Centralizada no Topo */}
-        <Box sx={{ display: "flex", justifyContent: "center", pt: "60px", position:"fixed", top: "0", alignSelf: "center"  }}>
+        <Box sx={{ display: "flex", justifyContent: "center", pt: "60px", position: "fixed", top: "0", alignSelf: "center" }}>
           <img
             src={LeftImage}
             alt="Esportify - Gerencial"
-            style={{ maxWidth: "500px" }}
+            style={{ maxWidth: "250px" }}
           />
         </Box>
+
+        <Typography align="center">
+          <strong>Bem-vindo</strong> ao seu Hub de Gerenciamento.
+        </Typography>
+        <Typography align="center">
+          Gerencie sua quadra de um jeito simples e eficaz!
+        </Typography>
+
 
         {/* Caixa de Login Centralizada */}
         <Box
@@ -76,7 +84,7 @@ function Home() {
           }}
         >
           <Typography variant="h6" align="center" gutterBottom sx={{
-            fontWeight:"400"
+            fontWeight: "400"
           }}>
             Faça Login para continuar
           </Typography>
@@ -89,7 +97,13 @@ function Home() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "10px", // Definindo o arredondamento para a borda
+              },
+            }}
           />
+
           <TextField
             label="Senha"
             variant="outlined"
@@ -99,7 +113,13 @@ function Home() {
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
             required
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "10px", // Definindo o arredondamento para a borda
+              },
+            }}
           />
+
           {errorMessage && (
             <Typography color="error" variant="body2" align="center">
               {errorMessage}
@@ -138,16 +158,16 @@ function Home() {
       </Box>
 
       <Box flex={2} display={{ xs: "none", md: "flex" }} sx={{ width: "100%", height: "100%" }}>
-  <img
-    src={RightImage}
-    alt="Imagem de início"
-    style={{
-      width: "100%",
-      height: "100vh",
-      objectFit: "cover", // Faz a imagem ocupar 100% da largura e altura, mesmo que distorça
-    }}
-  />
-</Box>
+        <img
+          src={RightImage}
+          alt="Imagem de início"
+          style={{
+            width: "100%",
+            height: "100vh",
+            objectFit: "cover", // Faz a imagem ocupar 100% da largura e altura, mesmo que distorça
+          }}
+        />
+      </Box>
 
 
       {isLoading && <Loading isLoading={isLoading} />}
