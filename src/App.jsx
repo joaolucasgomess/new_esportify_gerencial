@@ -10,6 +10,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Layout from './components/layout/Layout';
 
 const theme = createTheme({
   typography: {
@@ -25,12 +26,18 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/gerenciar-quadras" element={<GerenciarQuadras />} />
-          <Route path="/gerenciar-solicitacoes" element={<GerenciarSolicitacoes />} />
-          <Route path="/gerenciar-horarios" element={<GerenciarHorarios />} />
-          <Route path="/criar-quadra" element={<CriarQuadra />} />
-          <Route path="/listar-agendamentos" element={<ListarAgendamentos />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/*" element={
+            <Layout>
+              <Routes>
+                <Route path="gerenciar-quadras" element={<GerenciarQuadras />} />
+                <Route path="gerenciar-solicitacoes" element={<GerenciarSolicitacoes />} />
+                <Route path="gerenciar-horarios" element={<GerenciarHorarios />} />
+                <Route path="criar-quadra" element={<CriarQuadra />} />
+                <Route path="listar-agendamentos" element={<ListarAgendamentos />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Layout>
+          } />
         </Routes>
       </Router>
     </ThemeProvider>

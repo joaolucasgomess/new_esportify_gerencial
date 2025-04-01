@@ -1,28 +1,28 @@
 import { useState, useEffect } from "react";
 import Quadra from "./Quadra";
 import CriarQuadra from "./CriarQuadra";
-import Loading from "../Loading/Loading";
-import MenuLateral from "../MenuLateral/MenuLateral";
 import axios from "axios";
+import { Box, Typography, Button, Modal, CircularProgress, Paper } from "@mui/material";
+import Loading from "../Loading/Loading";
 
 function GerenciarQuadras() {
   const [isLoading, setIsLoading] = useState(true);
-  const [quadras, setQuadras] = useState([]);
+  const [courts, setCourts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    /*if (!token) {
-    navigate("/");
-    }*/
+    courts
     const fetchQuadras = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}quadra`, {
+        setIsLoading(true);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}court`, {
           headers: {
             Authorization: token,
           },
         });
-        setQuadras(response.data.courts);
+        
+        setCourts(response.data.courts);
       } catch (error) {
         if (
           error.response &&
@@ -41,7 +41,7 @@ function GerenciarQuadras() {
   }, [token]);
 
   const adicionarQuadra = (novaQuadra) => {
-    setQuadras([...quadras, novaQuadra]);
+    setCourts([...courts, novaQuadra]);
   };
 
   const renderizarQuadras = () => {
@@ -49,43 +49,52 @@ function GerenciarQuadras() {
       return <Loading isLoading={isLoading} />;
     }
 
-    if (quadras.length === 0) {
-      return <p>Nenhuma quadra adicionada ainda.</p>;
+    if (courts.length === 0) {
+      return <Typography variant="body1">Nenhuma quadra adicionada ainda.</Typography>;
     }
 
     return (
-      <div className="quadras-list">
-        {quadras.map((quadra) => (
-          <Quadra key={quadra.id} quadra={quadra} />
+      <Box display="flex" flexWrap="wrap" gap={2}>
+        {courts.map((court) => (
+          <Quadra key={court.id} quadra={court} />
         ))}
-      </div>
+      </Box>
     );
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
-    <div>
-      <MenuLateral />
-      <div>
-        <div className="button-container">
-          <p className="minhas-quadras">Minhas quadras:</p>
-          <div onClick={openModal} className="btn-add-quadra">
-            <p>+ Adicionar quadra</p>
-          </div>
-        </div>
-        <div className="quadras-container">{renderizarQuadras()}</div>
-      </div>
-      {isModalOpen && (
-        <CriarQuadra onAddQuadra={adicionarQuadra} onClose={closeModal} />
-      )}
-    </div>
+    <Box display="flex">
+      <Box flexGrow={1} p={3}>
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+          <Typography variant="h5">Minhas quadras:</Typography>
+          <Button variant="contained" color="primary" onClick={() => setIsModalOpen(true)}>
+            + Adicionar quadra
+          </Button>
+        </Box>
+        <Paper elevation={3} sx={{ p: 2, boxShadow: "none", backgroundColor:"inherit" }}>{renderizarQuadras()}</Paper>
+      </Box>
+      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="100vh"
+        >
+          <Box
+            p={4}
+            bgcolor="background.paper"
+            boxShadow={3}
+            borderRadius={2}
+            width="90%"
+            maxWidth="500px"
+            overflow="auto"
+          >
+            <CriarQuadra onAddQuadra={adicionarQuadra} onClose={() => setIsModalOpen(false)} />
+          </Box>
+        </Box>
+      </Modal>
+
+    </Box>
   );
 }
 

@@ -9,197 +9,9 @@ body {
   height: 100%;
   overflow: hidden;
   font-family: 'Montserrat', sans-serif;
+  background-color: #f7f7f7 !important; 
 }
 
-/* CSS RELACIONADO AO CARD DE QUADRA */
-.quadra {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: #5f535331;
-  padding: 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  border: 1px solid black;
-}
-
-.quadras-container {
-  flex-grow: 1;
-  padding: 20px;
-  margin-left: 200px;
-}
-
-.quadras-list {
-  display: flex;
-  padding: 0px;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin-left: 200px;
-}
-
-.minhas-quadras {
-  text-decoration: underline;
-  font-size: 1.5em;
-  font-family: Arial, Helvetica, sans-serif;
-  margin-left: 1%;
-}
-
-/* CSS RELACIONADO AO MENU LATERAL DE OPÇÕES */
-.seta-voltar {
-  cursor: pointer;
-  color: white;
-  margin: 0;
-}
-
-.menu-lateral {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: linear-gradient(to bottom, black, gray);
-  width: 200px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.menu-lateral ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100%;
-}
-
-.menu-lateral li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 15px;
-  color: white;
-  cursor: pointer;
-}
-
-.menu-lateral li:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: background-color 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.btn-logout {
-  color: white;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-}
-
-.btn-logout p {
-  margin-top: 2px;
-}
-
-@media screen and (max-width: 480px) {
-  .menu-lateral {
-    width: 30vw;
-  }
-}
-
-/* CSS RELACIONADO AO BOTÃO DE ADICIONAR QUADRA */
-.btn-add-quadra {
-  background-color: #6d6d6d;
-  color: white;
-  border-radius: 8px;
-  padding: 10px;
-  width: 152px;
-  height: 31px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  text-align: center;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.btn-add-quadra:hover {
-  background-color: #838383;
-}
-
-/* CSS RELACIONADO AO MODAL DE ADICIONAR QUADRA */
-.quadra-form-container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f4f4f4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.quadra-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.input-group {
-  margin-bottom: 15px;
-  width: 100%;
-  text-align: center;
-}
-
-.input-group label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.btn-submit {
-  background-color: #6d6d6d;
-  color: white;
-  width: 40vh;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.btn-submit:hover {
-  background-color: #838383;
-}
 
 /* CSS RELACIONADO AO BOTÃO DE GERENCIAR HORÁRIO DA QUADRA */
 .btn-configure {
@@ -219,7 +31,7 @@ body {
 }
 
 .main-content {
-  margin-left: 200px;
+  margin-left: 300px;
   padding: 20px;
   width: calc(100% - 200px);
 }
@@ -426,7 +238,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
 }
 
 
@@ -510,7 +321,6 @@ body {
 
 /* CSS RELACIONADO A TELA DE LISTAR HORÁRIOS MARCADOS */
 .listar-agendamentos {
-  margin-left: 220px;
   padding: 20px;
 }
 
@@ -690,7 +500,6 @@ body {
 .main-content-solicitacoes {
   flex: 1;
   padding: 20px;
-  margin-left: 200px;
 }
 
 .header-solicitacoes {

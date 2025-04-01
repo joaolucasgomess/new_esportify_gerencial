@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
-import MenuLateral from "../MenuLateral/MenuLateral";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty";
@@ -171,7 +170,6 @@ function GerenciarSolicitacoes() {
 
   return (
     <div className="gerenciar-container-solicitacoes">
-      <MenuLateral />
       <div className="main-content-solicitacoes">
         <div className="header-solicitacoes">
           <div className="options-solicitacoes">

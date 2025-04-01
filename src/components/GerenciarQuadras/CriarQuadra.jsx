@@ -1,26 +1,35 @@
 import { useState } from "react";
 import axios from "axios";
 import Loading from "../Loading/Loading";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@mui/material";
 
 function CriarQuadra({ onAddQuadra, onClose, errorMessage }) {
-  const [nome, setNome] = useState("");
+  const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("token");
-  const id_complexo_esportivo = localStorage.getItem("idSportsComplex");
+  const sportsComplexId = localStorage.getItem("sportsComplexId");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const novaQuadra = {
-      nome,
-      id_complexo_esportivo,
+      name,
+      sportsComplexId,
     };
 
     try {
       setIsLoading(true);
       console.log(novaQuadra);
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}quadra/adicionar-quadra`,
+        `${import.meta.env.VITE_API_URL}court/add`,
         novaQuadra,
         {
           headers: {
@@ -46,32 +55,31 @@ function CriarQuadra({ onAddQuadra, onClose, errorMessage }) {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>Adicionar Quadra</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="input-group-modal">
-            <label>Nome da quadra:</label>
-            <input
-              type="text"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              required
-            />
-          </div>
-          <div className="btn-container-modal">
-            <button type="submit" className="btn-modal">
-              Adicionar
-            </button>
-            <button type="button" className="btn-modal" onClick={onClose}>
-              Cancelar
-            </button>
-          </div>
+    <Dialog open onClose={onClose} fullWidth maxWidth="sm" >
+      <DialogTitle>Adicionar Quadra</DialogTitle>
+      <DialogContent>
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <TextField
+            label="Nome da quadra"
+            variant="outlined"
+            fullWidth
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+             margin="dense"
+          />
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         </form>
-        {isLoading && <Loading isLoading={isLoading} />}
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-      </div>
-    </div>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="secondary" variant="outlined" sx={{color: "red", borderColor: "red"}} >
+          Cancelar
+        </Button>
+        <Button type="submit" onClick={handleSubmit} color="primary" variant="contained" disabled={isLoading}>
+          {isLoading ? <CircularProgress size={24} /> : "Adicionar"}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 

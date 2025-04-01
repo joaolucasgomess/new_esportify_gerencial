@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import MenuLateral from "../MenuLateral/MenuLateral";
 import axios from "axios";
 import Loading from "../Loading/Loading";
 
@@ -101,7 +100,6 @@ function ListarAgendamentos() {
 
   return (
     <div className="listar-agendamentos">
-      <MenuLateral />
       {renderizarHorarios()}
       <div className="pagination">
         <button onClick={prevPage} disabled={currentPage === 1}>

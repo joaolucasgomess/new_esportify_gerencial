@@ -9,7 +9,7 @@ import Loading from "../Loading/Loading";
 
 function Home() {
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -19,8 +19,8 @@ function Home() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}administrador/login`,
-        { email, senha }
+        `${import.meta.env.VITE_API_URL}user/login/`,
+        { email, password }
       );
 
       const token = response.data.token;
@@ -62,11 +62,11 @@ function Home() {
           />
         </Box>
 
-        <Typography align="center">
+        <Typography align="center" fontSize={20}>
           <strong>Bem-vindo</strong> ao seu Hub de Gerenciamento.
         </Typography>
-        <Typography align="center">
-          Gerencie sua quadra de um jeito simples e eficaz!
+        <Typography align="center" fontSize={15}>
+          Gerencie sua quadra e acompanhe reservas de forma simples!
         </Typography>
 
 
@@ -84,7 +84,8 @@ function Home() {
           }}
         >
           <Typography variant="h6" align="center" gutterBottom sx={{
-            fontWeight: "400"
+            fontWeight: "400",
+            fontSize: "18px"
           }}>
             Faça Login para continuar
           </Typography>
@@ -110,8 +111,8 @@ function Home() {
             fullWidth
             margin="normal"
             type="password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             sx={{
               "& .MuiOutlinedInput-root": {
